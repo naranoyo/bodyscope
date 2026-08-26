@@ -1,69 +1,108 @@
-import Image from "next/image";
+// app/page.tsx
 
-export default function Home() {
+import {
+  Activity,
+  Dumbbell,
+  Flame,
+  HeartPulse,
+  Moon,
+  Weight,
+} from "lucide-react";
+
+import PageTitle from "@/components/PageTitle";
+import QuickMenu from "@/components/home/QuickMenu";
+import RecentRecords from "@/components/home/RecentRecords";
+import SummaryCard from "@/components/home/SummaryCard";
+import TodayStatus from "@/components/home/TodayStatus";
+
+export default function HomePage() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert h-5 w-[100px]"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the{" "}
-            <code className="rounded bg-black/[.06] px-1.5 py-0.5 font-mono text-[0.9em] dark:bg-white/[.08]">
-              page.tsx
-            </code>{" "}
-            file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+    <div>
+      <PageTitle
+        title="HOME"
+        description="トレーニング・食事・身体・健康データをまとめて確認します"
+        icon={Activity}
+      />
+
+      {/* 今日のサマリー */}
+      <section>
+        <div className="mb-3">
+          <h2 className="text-base font-bold text-slate-900">
+            今日のコンディション
+          </h2>
+        </div>
+
+        <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
+          <SummaryCard
+            title="体重"
+            value="72.4"
+            unit="kg"
+            subText="前回比 -0.3kg"
+            icon={Weight}
+          />
+
+          <SummaryCard
+            title="体脂肪率"
+            value="18.2"
+            unit="%"
+            subText="目標 15.0%"
+            icon={Activity}
+          />
+
+          <SummaryCard
+            title="摂取カロリー"
+            value="1,840"
+            unit="kcal"
+            subText="目標 2,300kcal"
+            icon={Flame}
+          />
+
+          <SummaryCard
+            title="トレーニング"
+            value="0"
+            unit="種目"
+            subText="今日はまだ未実施"
+            icon={Dumbbell}
+          />
+
+          <SummaryCard
+            title="血圧"
+            value="122 / 78"
+            unit="mmHg"
+            subText="直近の測定値"
+            icon={HeartPulse}
+          />
+
+          <SummaryCard
+            title="睡眠"
+            value="7時間12分"
+            subText="目標 7時間"
+            icon={Moon}
+          />
+        </div>
+      </section>
+
+      {/* クイックメニュー */}
+      <section className="mt-8">
+        <div className="mb-3">
+          <h2 className="text-base font-bold text-slate-900">
+            クイックメニュー
+          </h2>
+
+          <p className="mt-1 text-xs text-slate-400">
+            各機能へすぐに移動できます
           </p>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert h-[14px] w-4"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
+
+        <QuickMenu />
+      </section>
+
+      {/* 今日の記録・最近の記録 */}
+      <section className="mt-8 grid gap-4 lg:grid-cols-2">
+        <TodayStatus />
+
+        <RecentRecords />
+      </section>
     </div>
   );
 }
