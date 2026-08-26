@@ -64,21 +64,25 @@ export default function TrainingSummary({ records }: Props) {
 
   return (
     <section>
-      <div className="mb-3">
+      {/* HEADER */}
+
+      <div className="mb-2.5 sm:mb-3">
         <h2 className="text-lg font-bold text-slate-900">今日のトレーニング</h2>
 
         <p className="mt-1 text-sm text-slate-500">選択日のトレーニング状況</p>
       </div>
 
-      <div className="grid gap-4 sm:grid-cols-3">
-        {/* ===============================
-            種目数
-        =============================== */}
+      {/* CARDS */}
 
-        <div className="group rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition hover:-translate-y-0.5 hover:border-blue-200 hover:bg-blue-50/30 hover:shadow-md">
+      <div className="grid gap-3 sm:grid-cols-3 sm:gap-4">
+        {/* ========================================
+            種目数
+        ======================================== */}
+
+        <div className="group rounded-2xl border border-slate-200 bg-white p-4 shadow-sm transition hover:-translate-y-0.5 hover:border-blue-200 hover:bg-blue-50/30 hover:shadow-md sm:p-5">
           <div className="flex items-center justify-between">
-            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-blue-50 text-blue-600 transition group-hover:bg-blue-100">
-              <Dumbbell size={19} />
+            <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-blue-50 text-blue-600 transition group-hover:bg-blue-100 sm:h-10 sm:w-10">
+              <Dumbbell size={18} className="sm:h-4.75 sm:w-4.75" />
             </div>
 
             <p className="text-3xl font-black tracking-tight text-slate-900">
@@ -86,7 +90,7 @@ export default function TrainingSummary({ records }: Props) {
             </p>
           </div>
 
-          <div className="mt-4">
+          <div className="mt-3 sm:mt-4">
             <p className="text-sm font-bold text-slate-800">種目数</p>
 
             <p className="mt-1 text-xs text-slate-500">
@@ -95,14 +99,14 @@ export default function TrainingSummary({ records }: Props) {
           </div>
         </div>
 
-        {/* ===============================
+        {/* ========================================
             セット数
-        =============================== */}
+        ======================================== */}
 
-        <div className="group rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition hover:-translate-y-0.5 hover:border-blue-200 hover:bg-blue-50/30 hover:shadow-md">
+        <div className="group rounded-2xl border border-slate-200 bg-white p-4 shadow-sm transition hover:-translate-y-0.5 hover:border-blue-200 hover:bg-blue-50/30 hover:shadow-md sm:p-5">
           <div className="flex items-center justify-between">
-            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-blue-50 text-blue-600 transition group-hover:bg-blue-100">
-              <Layers3 size={19} />
+            <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-blue-50 text-blue-600 transition group-hover:bg-blue-100 sm:h-10 sm:w-10">
+              <Layers3 size={18} className="sm:h-4.75 sm:w-4.75" />
             </div>
 
             <p className="text-3xl font-black tracking-tight text-slate-900">
@@ -110,25 +114,25 @@ export default function TrainingSummary({ records }: Props) {
             </p>
           </div>
 
-          <div className="mt-4">
+          <div className="mt-3 sm:mt-4">
             <p className="text-sm font-bold text-slate-800">セット数</p>
 
             <p className="mt-1 text-xs text-slate-500">今日の合計セット</p>
           </div>
         </div>
 
-        {/* ===============================
+        {/* ========================================
             総ボリューム
-        =============================== */}
+        ======================================== */}
 
-        <div className="group rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition hover:-translate-y-0.5 hover:border-blue-200 hover:bg-blue-50/30 hover:shadow-md">
-          <div className="flex items-center justify-between">
-            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-blue-50 text-blue-600 transition group-hover:bg-blue-100">
-              <Weight size={19} />
+        <div className="group rounded-2xl border border-slate-200 bg-white p-4 shadow-sm transition hover:-translate-y-0.5 hover:border-blue-200 hover:bg-blue-50/30 hover:shadow-md sm:p-5">
+          <div className="flex items-center justify-between gap-3">
+            <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-blue-50 text-blue-600 transition group-hover:bg-blue-100 sm:h-10 sm:w-10">
+              <Weight size={18} className="sm:h-4.75 sm:w-4.75" />
             </div>
 
-            <div className="text-right">
-              <p className="text-2xl font-black tracking-tight text-slate-900 sm:text-3xl">
+            <div className="min-w-0 text-right">
+              <p className="truncate text-2xl font-black tracking-tight text-slate-900 sm:text-3xl">
                 {totalVolume.toLocaleString()}
               </p>
 
@@ -136,7 +140,7 @@ export default function TrainingSummary({ records }: Props) {
             </div>
           </div>
 
-          <div className="mt-4">
+          <div className="mt-3 sm:mt-4">
             <p className="text-sm font-bold text-slate-800">総ボリューム</p>
 
             <p className="mt-1 text-xs text-slate-500">重量 × 回数の合計</p>

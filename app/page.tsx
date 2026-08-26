@@ -24,15 +24,18 @@ export default function HomePage() {
         icon={Activity}
       />
 
-      {/* 今日のサマリー */}
+      {/* ========================================
+          今日のコンディション
+      ======================================== */}
+
       <section>
-        <div className="mb-3">
+        <div className="mb-2.5 sm:mb-3">
           <h2 className="text-base font-bold text-slate-900">
             今日のコンディション
           </h2>
         </div>
 
-        <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
+        <div className="grid gap-3 sm:grid-cols-2 sm:gap-4 xl:grid-cols-3">
           <SummaryCard
             title="体重"
             value="72.4"
@@ -82,9 +85,12 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* クイックメニュー */}
-      <section className="mt-8">
-        <div className="mb-3">
+      {/* ========================================
+          クイックメニュー
+      ======================================== */}
+
+      <section className="mt-6 sm:mt-8">
+        <div className="mb-2.5 sm:mb-3">
           <h2 className="text-base font-bold text-slate-900">
             クイックメニュー
           </h2>
@@ -97,8 +103,11 @@ export default function HomePage() {
         <QuickMenu />
       </section>
 
-      {/* 今日の記録・最近の記録 */}
-      <section className="mt-8 grid gap-4 lg:grid-cols-2">
+      {/* ========================================
+          今日の記録・最近の記録
+      ======================================== */}
+
+      <section className="mt-6 grid gap-3 sm:mt-8 sm:gap-4 lg:grid-cols-2">
         <TodayStatus />
 
         <RecentRecords />

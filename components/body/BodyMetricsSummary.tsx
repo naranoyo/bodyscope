@@ -45,6 +45,10 @@ type MetricCardProps = {
   }>;
 };
 
+/* =========================================================
+   METRIC CARD
+========================================================= */
+
 function MetricCard({
   label,
   value,
@@ -53,12 +57,12 @@ function MetricCard({
   icon: Icon,
 }: MetricCardProps) {
   return (
-    <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+    <div className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm sm:p-5">
       <div className="flex items-start justify-between gap-3">
-        <div>
+        <div className="min-w-0">
           <p className="text-sm font-medium text-slate-500">{label}</p>
 
-          <div className="mt-2 flex items-end gap-1">
+          <div className="mt-1.5 flex items-end gap-1 sm:mt-2">
             <span className="text-2xl font-bold tracking-tight text-slate-900">
               {value}
             </span>
@@ -71,14 +75,14 @@ function MetricCard({
           </div>
 
           {description && (
-            <p className="mt-2 text-xs leading-relaxed text-slate-400">
+            <p className="mt-1.5 text-xs leading-relaxed text-slate-400 sm:mt-2">
               {description}
             </p>
           )}
         </div>
 
-        <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-blue-50 text-blue-600">
-          <Icon size={19} />
+        <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-blue-50 text-blue-600 sm:h-10 sm:w-10">
+          <Icon size={18} className="sm:h-4.75 sm:w-4.75" />
         </div>
       </div>
     </div>
@@ -93,6 +97,10 @@ type PFCCardProps = {
   description: string;
 };
 
+/* =========================================================
+   PFC CARD
+========================================================= */
+
 function PFCCard({
   label,
   shortLabel,
@@ -101,24 +109,24 @@ function PFCCard({
   description,
 }: PFCCardProps) {
   return (
-    <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+    <div className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm sm:p-5">
       <div className="flex items-center justify-between gap-3">
-        <div>
+        <div className="min-w-0">
           <p className="text-sm font-medium text-slate-500">{label}</p>
 
-          <div className="mt-2 flex items-end gap-1">
+          <div className="mt-1.5 flex items-end gap-1 sm:mt-2">
             <span className="text-2xl font-bold text-slate-900">{grams}</span>
 
             <span className="pb-0.5 text-sm text-slate-400">g</span>
           </div>
         </div>
 
-        <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-blue-50 text-sm font-black text-blue-600">
+        <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-blue-50 text-sm font-black text-blue-600 sm:h-10 sm:w-10">
           {shortLabel}
         </div>
       </div>
 
-      <p className="mt-3 text-xs font-medium text-slate-500">
+      <p className="mt-2.5 text-xs font-medium text-slate-500 sm:mt-3">
         {calories.toLocaleString()} kcal
       </p>
 
@@ -128,6 +136,10 @@ function PFCCard({
     </div>
   );
 }
+
+/* =========================================================
+   GOAL LABEL
+========================================================= */
 
 function getGoalModeLabel(goalMode: GoalMode) {
   switch (goalMode) {
@@ -179,6 +191,10 @@ function getActivityDescription(
   }
 }
 
+/* =========================================================
+   BODY METRICS SUMMARY
+========================================================= */
+
 export default function BodyMetricsSummary({
   latestRecord,
   settings,
@@ -223,7 +239,7 @@ export default function BodyMetricsSummary({
   }
 
   /* =========================================================
-     年齢
+     AGE
   ========================================================= */
 
   if (birthDate) {
@@ -235,14 +251,14 @@ export default function BodyMetricsSummary({
   }
 
   /* =========================================================
-     性別
+     GENDER
   ========================================================= */
 
   const supportedGender: SupportedGender | undefined =
     gender === "male" || gender === "female" ? gender : undefined;
 
   /* =========================================================
-     基礎代謝
+     BMR
   ========================================================= */
 
   if (
@@ -259,7 +275,7 @@ export default function BodyMetricsSummary({
   }
 
   /* =========================================================
-     活動係数
+     ACTIVITY
   ========================================================= */
 
   if (activityLevel) {
@@ -267,7 +283,7 @@ export default function BodyMetricsSummary({
   }
 
   /* =========================================================
-     1日の消費カロリー
+     TDEE
   ========================================================= */
 
   if (bmr !== undefined && activityLevel) {
@@ -279,7 +295,7 @@ export default function BodyMetricsSummary({
   }
 
   /* =========================================================
-     1日の調整カロリー
+     CALORIE ADJUSTMENT
   ========================================================= */
 
   if (weight !== undefined && targetWeight !== undefined) {
@@ -296,7 +312,7 @@ export default function BodyMetricsSummary({
   }
 
   /* =========================================================
-     目標摂取カロリー
+     TARGET CALORIES
   ========================================================= */
 
   if (
@@ -343,13 +359,13 @@ export default function BodyMetricsSummary({
         : "維持モードでは調整しません";
 
   return (
-    <div className="space-y-8">
+    <div className="space-y-6 sm:space-y-8">
       {/* =====================================================
           現在の身体データ
       ===================================================== */}
 
       <section>
-        <div className="mb-3">
+        <div className="mb-2.5 sm:mb-3">
           <h2 className="text-base font-bold text-slate-900">
             現在の身体データ
           </h2>
@@ -359,8 +375,9 @@ export default function BodyMetricsSummary({
           </p>
         </div>
 
-        <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
+        <div className="grid gap-3 sm:grid-cols-2 sm:gap-4 xl:grid-cols-3">
           {/* ① 体重 */}
+
           <EditableWeightCard
             key={`${latestRecord?.id ?? "new"}-${latestRecord?.updatedAt ?? "new"}`}
             latestRecord={latestRecord}
@@ -368,6 +385,7 @@ export default function BodyMetricsSummary({
           />
 
           {/* ② 身長 */}
+
           <MetricCard
             label="身長"
             value={height !== undefined ? height.toFixed(1) : "未設定"}
@@ -377,6 +395,7 @@ export default function BodyMetricsSummary({
           />
 
           {/* ③ BMI */}
+
           <MetricCard
             label="BMI"
             value={bmi !== undefined ? bmi.toFixed(1) : "計算不可"}
@@ -389,6 +408,7 @@ export default function BodyMetricsSummary({
           />
 
           {/* 基礎代謝 */}
+
           <MetricCard
             label="基礎代謝"
             value={bmr !== undefined ? bmr.toLocaleString() : "計算不可"}
@@ -402,6 +422,7 @@ export default function BodyMetricsSummary({
           />
 
           {/* 活動係数 */}
+
           <MetricCard
             label="活動係数"
             value={
@@ -414,6 +435,7 @@ export default function BodyMetricsSummary({
           />
 
           {/* TDEE */}
+
           <MetricCard
             label="1日の消費カロリー"
             value={tdee !== undefined ? tdee.toLocaleString() : "計算不可"}
@@ -423,7 +445,7 @@ export default function BodyMetricsSummary({
           />
         </div>
 
-        <div className="mt-3 rounded-xl bg-slate-100 px-4 py-3">
+        <div className="mt-3 rounded-xl bg-slate-100 px-3 py-2.5 sm:px-4 sm:py-3">
           <p className="text-xs leading-relaxed text-slate-500">
             BMI・基礎代謝・消費カロリーは目安です。
             実際の消費エネルギーには個人差があります。
@@ -436,7 +458,7 @@ export default function BodyMetricsSummary({
       ===================================================== */}
 
       <section>
-        <div className="mb-3">
+        <div className="mb-2.5 sm:mb-3">
           <h2 className="text-base font-bold text-slate-900">身体づくり目標</h2>
 
           <p className="mt-1 text-xs text-slate-400">
@@ -444,7 +466,7 @@ export default function BodyMetricsSummary({
           </p>
         </div>
 
-        <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
+        <div className="grid gap-3 sm:grid-cols-2 sm:gap-4 xl:grid-cols-3">
           <MetricCard
             label="目標モード"
             value={getGoalModeLabel(goalMode)}
@@ -524,7 +546,7 @@ export default function BodyMetricsSummary({
         </div>
 
         {targetCalories !== undefined && (
-          <div className="mt-3 rounded-xl border border-blue-100 bg-blue-50 px-4 py-3">
+          <div className="mt-3 rounded-xl border border-blue-100 bg-blue-50 px-3 py-2.5 sm:px-4 sm:py-3">
             <p className="text-xs leading-relaxed text-blue-700">
               {goalMode === "cut" &&
                 "減量モードでは、計算上の目標摂取カロリーが基礎代謝を下回る場合、基礎代謝を下限として表示します。"}
@@ -544,7 +566,7 @@ export default function BodyMetricsSummary({
       ===================================================== */}
 
       <section>
-        <div className="mb-3">
+        <div className="mb-2.5 sm:mb-3">
           <h2 className="text-base font-bold text-slate-900">PFCバランス</h2>
 
           <p className="mt-1 text-xs text-slate-400">
@@ -554,7 +576,7 @@ export default function BodyMetricsSummary({
 
         {pfc ? (
           <>
-            <div className="grid gap-4 sm:grid-cols-3">
+            <div className="grid gap-3 sm:grid-cols-3 sm:gap-4">
               <PFCCard
                 label="タンパク質"
                 shortLabel="P"
@@ -584,8 +606,8 @@ export default function BodyMetricsSummary({
               />
             </div>
 
-            <div className="mt-4 rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
-              <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
+            <div className="mt-3 rounded-2xl border border-slate-200 bg-white p-4 shadow-sm sm:mt-4 sm:p-5">
+              <div className="flex flex-col gap-3 lg:flex-row lg:items-center lg:justify-between lg:gap-4">
                 <div>
                   <p className="text-sm font-bold text-slate-900">
                     1日の栄養目標
@@ -596,7 +618,7 @@ export default function BodyMetricsSummary({
                   </p>
                 </div>
 
-                <div className="flex flex-wrap gap-x-6 gap-y-2">
+                <div className="flex flex-wrap gap-x-5 gap-y-2 sm:gap-x-6">
                   <div>
                     <span className="text-xs text-slate-400">カロリー</span>
 
@@ -631,7 +653,7 @@ export default function BodyMetricsSummary({
             </div>
           </>
         ) : (
-          <div className="rounded-2xl border border-dashed border-slate-200 bg-white px-4 py-10 text-center">
+          <div className="rounded-2xl border border-dashed border-slate-200 bg-white px-4 py-8 text-center sm:py-10">
             <p className="text-sm font-medium text-slate-500">
               PFCをまだ計算できません
             </p>

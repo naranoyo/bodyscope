@@ -179,7 +179,7 @@ export default function TrainingPage() {
     }
 
     if (!editDate) {
-      alert("日付を入力してください。");
+      window.alert("日付を入力してください。");
 
       return;
     }
@@ -217,7 +217,7 @@ export default function TrainingPage() {
     } catch (error) {
       console.error(error);
 
-      alert("トレーニング記録の更新に失敗しました。");
+      window.alert("トレーニング記録の更新に失敗しました。");
     } finally {
       setIsUpdating(false);
     }
@@ -263,8 +263,10 @@ export default function TrainingPage() {
   ========================================================= */
 
   return (
-    <div className="space-y-6">
-      {/* PAGE TITLE */}
+    <div className="min-w-0 space-y-5 sm:space-y-6">
+      {/* ========================================
+          PAGE TITLE
+      ======================================== */}
 
       <PageTitle
         title="TRAINING"
@@ -276,14 +278,16 @@ export default function TrainingPage() {
           DATE
       ======================================== */}
 
-      <section className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm sm:p-6">
-        <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-          <div className="flex items-center gap-3">
-            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-blue-50 text-blue-600">
+      <section className="min-w-0 overflow-hidden rounded-2xl border border-slate-200 bg-white p-4 shadow-sm sm:p-6">
+        <div className="flex min-w-0 flex-col gap-3 sm:flex-row sm:items-center sm:justify-between sm:gap-4">
+          {/* タイトル */}
+
+          <div className="flex min-w-0 items-center gap-3">
+            <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-blue-50 text-blue-600">
               <CalendarDays size={19} />
             </div>
 
-            <div>
+            <div className="min-w-0">
               <h2 className="font-bold text-slate-900">トレーニング日</h2>
 
               <p className="mt-0.5 text-xs text-slate-500">
@@ -292,7 +296,9 @@ export default function TrainingPage() {
             </div>
           </div>
 
-          <div className="w-full sm:w-auto">
+          {/* 日付入力 */}
+
+          <div className="min-w-0 w-full sm:w-auto sm:shrink-0">
             <label htmlFor="training-date" className="sr-only">
               トレーニング日
             </label>
@@ -302,7 +308,7 @@ export default function TrainingPage() {
               type="date"
               value={selectedDate}
               onChange={(event) => setSelectedDate(event.target.value)}
-              className="h-11 w-full rounded-xl border border-slate-200 bg-white px-4 text-sm font-semibold text-slate-900 outline-none transition hover:border-slate-300 focus:border-blue-500 focus:ring-4 focus:ring-blue-50 sm:w-48"
+              className="block h-11 w-full min-w-0 max-w-full rounded-xl border border-slate-200 bg-white px-3 text-sm font-semibold text-slate-900 outline-none transition hover:border-slate-300 focus:border-blue-500 focus:ring-4 focus:ring-blue-50 sm:w-48 sm:px-4"
             />
           </div>
         </div>
@@ -314,17 +320,17 @@ export default function TrainingPage() {
 
       {isLoading ? (
         <section>
-          <div className="mb-3">
+          <div className="mb-2.5 sm:mb-3">
             <h2 className="text-lg font-bold text-slate-900">
               今日のトレーニング
             </h2>
           </div>
 
-          <div className="grid gap-4 sm:grid-cols-3">
+          <div className="grid gap-3 sm:grid-cols-3 sm:gap-4">
             {[1, 2, 3].map((item) => (
               <div
                 key={item}
-                className="h-36 animate-pulse rounded-2xl border border-slate-200 bg-slate-100"
+                className="h-28 animate-pulse rounded-2xl border border-slate-200 bg-slate-100 sm:h-36"
               />
             ))}
           </div>
@@ -339,7 +345,9 @@ export default function TrainingPage() {
 
       <TrainingRecordForm date={selectedDate} onSaved={handleSaved} />
 
-      {/* ERROR */}
+      {/* ========================================
+          ERROR
+      ======================================== */}
 
       {errorMessage && (
         <div className="rounded-xl border border-red-100 bg-red-50 px-4 py-3 text-sm font-medium text-red-600">
@@ -352,14 +360,14 @@ export default function TrainingPage() {
       ======================================== */}
 
       {isLoading ? (
-        <section className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm sm:p-6">
+        <section className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm sm:p-6">
           <h2 className="text-lg font-bold text-slate-900">TRAINING記録履歴</h2>
 
-          <div className="mt-6 space-y-4">
+          <div className="mt-4 space-y-3 sm:mt-6 sm:space-y-4">
             {[1, 2].map((item) => (
               <div
                 key={item}
-                className="h-28 animate-pulse rounded-2xl bg-slate-100"
+                className="h-24 animate-pulse rounded-2xl bg-slate-100 sm:h-28"
               />
             ))}
           </div>
@@ -379,11 +387,11 @@ export default function TrainingPage() {
 
       {editingRecord && (
         <div className="fixed inset-0 z-50 flex items-start justify-center overflow-y-auto bg-slate-950/40 px-4 py-6 backdrop-blur-[2px] sm:py-10">
-          <div className="w-full max-w-lg rounded-2xl border border-slate-200 bg-white p-5 shadow-xl sm:p-6">
+          <div className="min-w-0 w-full max-w-lg rounded-2xl border border-slate-200 bg-white p-4 shadow-xl sm:p-6">
             {/* HEADER */}
 
             <div className="flex items-start justify-between gap-4">
-              <div>
+              <div className="min-w-0">
                 <h2 className="text-lg font-bold text-slate-900">
                   TRAINING記録を編集
                 </h2>
@@ -396,7 +404,7 @@ export default function TrainingPage() {
               <button
                 type="button"
                 onClick={handleCloseEdit}
-                className="flex h-9 w-9 items-center justify-center rounded-lg text-slate-400 transition hover:bg-slate-100 hover:text-slate-700"
+                className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg text-slate-400 transition hover:bg-slate-100 hover:text-slate-700"
                 aria-label="編集画面を閉じる"
               >
                 <X size={19} />
@@ -405,14 +413,14 @@ export default function TrainingPage() {
 
             {/* EXERCISE INFO */}
 
-            <div className="mt-6 rounded-2xl bg-slate-50 p-4">
+            <div className="mt-5 rounded-2xl bg-slate-50 p-3 sm:mt-6 sm:p-4">
               <div className="flex items-center gap-3">
-                <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-blue-50 text-blue-600">
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-blue-50 text-blue-600">
                   <Dumbbell size={18} />
                 </div>
 
-                <div>
-                  <p className="font-bold text-slate-900">
+                <div className="min-w-0">
+                  <p className="truncate font-bold text-slate-900">
                     {editingRecord.exercises[0]?.exerciseName ?? "トレーニング"}
                   </p>
 
@@ -426,8 +434,8 @@ export default function TrainingPage() {
 
             {/* DATE / TIME */}
 
-            <div className="mt-6 grid gap-4 sm:grid-cols-2">
-              <div>
+            <div className="mt-5 grid min-w-0 gap-4 sm:mt-6 sm:grid-cols-2">
+              <div className="min-w-0">
                 <label
                   htmlFor="training-edit-date"
                   className="mb-2 flex items-center gap-2 text-sm font-semibold text-slate-700"
@@ -441,11 +449,11 @@ export default function TrainingPage() {
                   type="date"
                   value={editDate}
                   onChange={(event) => setEditDate(event.target.value)}
-                  className="h-11 w-full rounded-xl border border-slate-200 bg-white px-3 text-sm text-slate-900 outline-none transition focus:border-blue-500 focus:ring-4 focus:ring-blue-50"
+                  className="block h-11 w-full min-w-0 max-w-full rounded-xl border border-slate-200 bg-white px-3 text-sm text-slate-900 outline-none transition focus:border-blue-500 focus:ring-4 focus:ring-blue-50"
                 />
               </div>
 
-              <div>
+              <div className="min-w-0">
                 <label
                   htmlFor="training-edit-time"
                   className="mb-2 flex items-center gap-2 text-sm font-semibold text-slate-700"
@@ -459,7 +467,7 @@ export default function TrainingPage() {
                   type="time"
                   value={editTime}
                   onChange={(event) => setEditTime(event.target.value)}
-                  className="h-11 w-full rounded-xl border border-slate-200 bg-white px-3 text-sm text-slate-900 outline-none transition focus:border-blue-500 focus:ring-4 focus:ring-blue-50"
+                  className="block h-11 w-full min-w-0 max-w-full rounded-xl border border-slate-200 bg-white px-3 text-sm text-slate-900 outline-none transition focus:border-blue-500 focus:ring-4 focus:ring-blue-50"
                 />
               </div>
             </div>
@@ -467,8 +475,8 @@ export default function TrainingPage() {
             {/* SET INFO */}
 
             {editingRecord.exercises[0] && (
-              <div className="mt-5 overflow-hidden rounded-xl border border-slate-200">
-                <div className="grid grid-cols-[70px_1fr_1fr] bg-slate-50 px-4 py-2 text-xs font-semibold text-slate-500">
+              <div className="mt-5 min-w-0 overflow-hidden rounded-xl border border-slate-200">
+                <div className="grid grid-cols-[60px_1fr_1fr] bg-slate-50 px-3 py-2 text-xs font-semibold text-slate-500 sm:grid-cols-[70px_1fr_1fr] sm:px-4">
                   <span>セット</span>
 
                   <span className="text-right">重量</span>
@@ -479,18 +487,24 @@ export default function TrainingPage() {
                 {editingRecord.exercises[0].sets.map((set) => (
                   <div
                     key={set.id}
-                    className="grid grid-cols-[70px_1fr_1fr] border-t border-slate-100 px-4 py-3 text-sm"
+                    className="grid grid-cols-[60px_1fr_1fr] border-t border-slate-100 px-3 py-3 text-sm sm:grid-cols-[70px_1fr_1fr] sm:px-4"
                   >
                     <span className="font-semibold text-slate-600">
                       {set.setNumber}
                     </span>
 
                     <span className="text-right font-bold text-slate-900">
-                      {set.weight} kg
+                      {set.weight}{" "}
+                      <span className="text-xs font-normal text-slate-400">
+                        kg
+                      </span>
                     </span>
 
                     <span className="text-right font-bold text-slate-900">
-                      {set.reps} 回
+                      {set.reps}{" "}
+                      <span className="text-xs font-normal text-slate-400">
+                        回
+                      </span>
                     </span>
                   </div>
                 ))}
@@ -499,12 +513,12 @@ export default function TrainingPage() {
 
             {/* ACTION */}
 
-            <div className="mt-6 flex gap-3">
+            <div className="mt-5 flex gap-2 sm:mt-6 sm:gap-3">
               <button
                 type="button"
                 onClick={handleUpdateRecord}
                 disabled={isUpdating}
-                className="inline-flex flex-1 items-center justify-center gap-2 rounded-xl bg-blue-600 px-4 py-3 text-sm font-bold text-white transition hover:bg-blue-700 disabled:cursor-not-allowed disabled:opacity-50"
+                className="inline-flex min-w-0 flex-1 items-center justify-center gap-2 rounded-xl bg-blue-600 px-3 py-3 text-sm font-bold text-white transition hover:bg-blue-700 disabled:cursor-not-allowed disabled:opacity-50 sm:px-4"
               >
                 <Save size={17} />
 
@@ -515,7 +529,7 @@ export default function TrainingPage() {
                 type="button"
                 onClick={handleCloseEdit}
                 disabled={isUpdating}
-                className="rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm font-semibold text-slate-600 transition hover:bg-slate-50 disabled:opacity-50"
+                className="shrink-0 rounded-xl border border-slate-200 bg-white px-3 py-3 text-sm font-semibold text-slate-600 transition hover:bg-slate-50 disabled:opacity-50 sm:px-4"
               >
                 キャンセル
               </button>
